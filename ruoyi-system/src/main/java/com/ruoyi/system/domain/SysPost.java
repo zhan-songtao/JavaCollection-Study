@@ -105,7 +105,7 @@ public class SysPost extends BaseEntity
     {
         this.flag = flag;
     }
-    
+
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -121,4 +121,5 @@ public class SysPost extends BaseEntity
             .append("remark", getRemark())
             .toString();
     }
+
 }
