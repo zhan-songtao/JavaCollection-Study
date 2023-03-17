@@ -5,98 +5,98 @@ import org.apache.ibatis.annotations.Param;
 import com.ruoyi.common.core.domain.entity.SysDept;
 
 /**
- * 部门管理 数据层
+ * 小区管理 数据层
  * 
  * @author ruoyi
  */
 public interface SysDeptMapper
 {
     /**
-     * 查询部门管理数据
+     * 查询小区管理数据
      * 
-     * @param dept 部门信息
-     * @return 部门信息集合
+     * @param dept 小区信息
+     * @return 小区信息集合
      */
     public List<SysDept> selectDeptList(SysDept dept);
 
     /**
-     * 根据角色ID查询部门树信息
+     * 根据角色ID查询小区树信息
      * 
      * @param roleId 角色ID
-     * @param deptCheckStrictly 部门树选择项是否关联显示
-     * @return 选中部门列表
+     * @param deptCheckStrictly 小区树选择项是否关联显示
+     * @return 选中小区列表
      */
     public List<Long> selectDeptListByRoleId(@Param("roleId") Long roleId, @Param("deptCheckStrictly") boolean deptCheckStrictly);
 
     /**
-     * 根据部门ID查询信息
+     * 根据小区ID查询信息
      * 
-     * @param deptId 部门ID
-     * @return 部门信息
+     * @param deptId 小区ID
+     * @return 小区信息
      */
     public SysDept selectDeptById(Long deptId);
 
     /**
-     * 根据ID查询所有子部门
+     * 根据ID查询所有子小区
      * 
-     * @param deptId 部门ID
-     * @return 部门列表
+     * @param deptId 小区ID
+     * @return 小区列表
      */
     public List<SysDept> selectChildrenDeptById(Long deptId);
 
     /**
-     * 根据ID查询所有子部门（正常状态）
+     * 根据ID查询所有子小区（已完成状态）
      * 
-     * @param deptId 部门ID
-     * @return 子部门数
+     * @param deptId 小区ID
+     * @return 子小区数
      */
     public int selectNormalChildrenDeptById(Long deptId);
 
     /**
      * 是否存在子节点
      * 
-     * @param deptId 部门ID
+     * @param deptId 小区ID
      * @return 结果
      */
     public int hasChildByDeptId(Long deptId);
 
     /**
-     * 查询部门是否存在用户
+     * 查询小区是否存在用户
      * 
-     * @param deptId 部门ID
+     * @param deptId 小区ID
      * @return 结果
      */
     public int checkDeptExistUser(Long deptId);
 
     /**
-     * 校验部门名称是否唯一
+     * 校验小区名称是否唯一
      * 
-     * @param deptName 部门名称
-     * @param parentId 父部门ID
+     * @param deptName 小区名称
+     * @param parentId 父小区ID
      * @return 结果
      */
     public SysDept checkDeptNameUnique(@Param("deptName") String deptName, @Param("parentId") Long parentId);
 
     /**
-     * 新增部门信息
+     * 新增小区信息
      * 
-     * @param dept 部门信息
+     * @param dept 小区信息
      * @return 结果
      */
     public int insertDept(SysDept dept);
 
     /**
-     * 修改部门信息
+     * 修改小区信息
      * 
-     * @param dept 部门信息
+     * @param dept 小区信息
      * @return 结果
      */
     public int updateDept(SysDept dept);
 
     /**
-     * 修改所在部门正常状态
+     * 修改所在小区已完成状态
      * 
-     * @param deptIds 部门ID组
+     * @param deptIds 小区ID组
      */
     public void updateDeptStatusNormal(Long[] deptIds);
 
@@ -109,9 +109,9 @@ public interface SysDeptMapper
     public int updateDeptChildren(@Param("depts") List<SysDept> depts);
 
     /**
-     * 删除部门管理信息
+     * 删除小区管理信息
      * 
-     * @param deptId 部门ID
+     * @param deptId 小区ID
      * @return 结果
      */
     public int deleteDeptById(Long deptId);

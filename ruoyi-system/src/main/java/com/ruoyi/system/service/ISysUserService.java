@@ -59,7 +59,7 @@ public interface ISysUserService
     public String selectUserRoleGroup(String userName);
 
     /**
-     * 根据用户ID查询用户所属岗位组
+     * 根据用户ID查询用户所属物资组
      * 
      * @param userName 用户名
      * @return 结果

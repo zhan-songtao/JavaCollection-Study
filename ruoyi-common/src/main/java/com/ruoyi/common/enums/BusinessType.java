@@ -33,7 +33,7 @@ public enum BusinessType
     GRANT,
 
     /**
-     * 导出
+     * Excel
      */
     EXPORT,
 

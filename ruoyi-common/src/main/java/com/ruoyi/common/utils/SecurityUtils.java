@@ -30,7 +30,7 @@ public class SecurityUtils
     }
 
     /**
-     * 获取部门ID
+     * 获取小区ID
      **/
     public static Long getDeptId()
     {
@@ -40,7 +40,7 @@ public class SecurityUtils
         }
         catch (Exception e)
         {
-            throw new ServiceException("获取部门ID异常", HttpStatus.UNAUTHORIZED);
+            throw new ServiceException("获取小区ID异常", HttpStatus.UNAUTHORIZED);
         }
     }
     

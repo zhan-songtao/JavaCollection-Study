@@ -25,10 +25,10 @@ public class GenConstants
     /** 树名称字段 */
     public static final String TREE_NAME = "treeName";
 
-    /** 上级菜单ID字段 */
+    /** 上级物资ID字段 */
     public static final String PARENT_MENU_ID = "parentMenuId";
 
-    /** 上级菜单名称字段 */
+    /** 上级物资名称字段 */
     public static final String PARENT_MENU_NAME = "parentMenuName";
 
     /** 数据库字符串类型 */

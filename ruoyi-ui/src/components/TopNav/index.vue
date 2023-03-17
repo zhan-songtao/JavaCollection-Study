@@ -11,9 +11,9 @@
       >
     </template>
 
-    <!-- 顶部菜单超出数量折叠 -->
+    <!-- 顶部物资超出数量折叠 -->
     <el-submenu :style="{'--theme': theme}" index="more" v-if="topMenus.length > visibleNumber">
-      <template slot="title">更多菜单</template>
+      <template slot="title">更多物资</template>
       <template v-for="(item, index) in topMenus">
         <el-menu-item
           :index="item.path"
@@ -38,7 +38,7 @@ export default {
     return {
       // 顶部栏初始数
       visibleNumber: 5,
-      // 当前激活菜单的 index
+      // 当前激活物资的 index
       currentIndex: undefined
     };
   },
@@ -46,12 +46,12 @@ export default {
     theme() {
       return this.$store.state.settings.theme;
     },
-    // 顶部显示菜单
+    // 顶部显示物资
     topMenus() {
       let topMenus = [];
       this.routers.map((menu) => {
         if (menu.hidden !== true) {
-          // 兼容顶部栏一级菜单内部跳转
+          // 兼容顶部栏一级物资内部跳转
           if (menu.path === "/") {
               topMenus.push(menu.children[0]);
           } else {
@@ -85,7 +85,7 @@ export default {
       });
       return constantRoutes.concat(childrenMenus);
     },
-    // 默认激活的菜单
+    // 默认激活的物资
     activeMenu() {
       const path = this.$route.path;
       let activePath = path;
@@ -118,7 +118,7 @@ export default {
       const width = document.body.getBoundingClientRect().width / 3;
       this.visibleNumber = parseInt(width / 85);
     },
-    // 菜单选择事件
+    // 物资选择事件
     handleSelect(key, keyPath) {
       this.currentIndex = key;
       const route = this.routers.find(item => item.path === key);
@@ -130,7 +130,7 @@ export default {
         this.$router.push({ path: key });
         this.$store.dispatch('app/toggleSideBarHide', true);
       } else {
-        // 显示左侧联动菜单
+        // 显示左侧联动物资
         this.activeRoutes(key);
         this.$store.dispatch('app/toggleSideBarHide', false);
       }

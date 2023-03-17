@@ -24,7 +24,7 @@ import com.ruoyi.system.domain.SysPost;
 import com.ruoyi.system.service.ISysPostService;
 
 /**
- * 岗位信息操作处理
+ * 物资信息操作处理
  * 
  * @author ruoyi
  */
@@ -36,7 +36,7 @@ public class SysPostController extends BaseController
     private ISysPostService postService;
 
     /**
-     * 获取岗位列表
+     * 获取物资列表
      */
     @PreAuthorize("@ss.hasPermi('system:post:list')")
     @GetMapping("/list")
@@ -47,18 +47,18 @@ public class SysPostController extends BaseController
         return getDataTable(list);
     }
     
-    @Log(title = "岗位管理", businessType = BusinessType.EXPORT)
+    @Log(title = "物资管理", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:post:export')")
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysPost post)
     {
         List<SysPost> list = postService.selectPostList(post);
         ExcelUtil<SysPost> util = new ExcelUtil<SysPost>(SysPost.class);
-        util.exportExcel(response, list, "岗位数据");
+        util.exportExcel(response, list, "物资数据");
     }
 
     /**
-     * 根据岗位编号获取详细信息
+     * 根据物资编号获取详细信息
      */
     @PreAuthorize("@ss.hasPermi('system:post:query')")
     @GetMapping(value = "/{postId}")
@@ -68,50 +68,51 @@ public class SysPostController extends BaseController
     }
 
     /**
-     * 新增岗位
+     * 新增物资
      */
     @PreAuthorize("@ss.hasPermi('system:post:add')")
-    @Log(title = "岗位管理", businessType = BusinessType.INSERT)
+    @Log(title = "物资管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysPost post)
     {
+//         比较
         if (UserConstants.NOT_UNIQUE.equals(postService.checkPostNameUnique(post)))
         {
-            return error("新增岗位'" + post.getPostName() + "'失败，岗位名称已存在");
+            return error("新增物资'" + post.getPostName() + "'失败，物资名称已存在");
         }
         else if (UserConstants.NOT_UNIQUE.equals(postService.checkPostCodeUnique(post)))
         {
-            return error("新增岗位'" + post.getPostName() + "'失败，岗位编码已存在");
+            return error("新增物资'" + post.getPostName() + "'失败，物资编码已存在");
         }
         post.setCreateBy(getUsername());
         return toAjax(postService.insertPost(post));
     }
 
     /**
-     * 修改岗位
+     * 修改物资
      */
     @PreAuthorize("@ss.hasPermi('system:post:edit')")
-    @Log(title = "岗位管理", businessType = BusinessType.UPDATE)
+    @Log(title = "物资管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysPost post)
     {
         if (UserConstants.NOT_UNIQUE.equals(postService.checkPostNameUnique(post)))
         {
-            return error("修改岗位'" + post.getPostName() + "'失败，岗位名称已存在");
+            return error("修改物资'" + post.getPostName() + "'失败，物资名称已存在");
         }
         else if (UserConstants.NOT_UNIQUE.equals(postService.checkPostCodeUnique(post)))
         {
-            return error("修改岗位'" + post.getPostName() + "'失败，岗位编码已存在");
+            return error("修改物资'" + post.getPostName() + "'失败，物资编码已存在");
         }
         post.setUpdateBy(getUsername());
         return toAjax(postService.updatePost(post));
     }
 
     /**
-     * 删除岗位
+     * 删除物资
      */
     @PreAuthorize("@ss.hasPermi('system:post:remove')")
-    @Log(title = "岗位管理", businessType = BusinessType.DELETE)
+    @Log(title = "物资管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{postIds}")
     public AjaxResult remove(@PathVariable Long[] postIds)
     {
@@ -119,7 +120,7 @@ public class SysPostController extends BaseController
     }
 
     /**
-     * 获取岗位选择框列表
+     * 获取物资选择框列表
      */
     @GetMapping("/optionselect")
     public AjaxResult optionselect()

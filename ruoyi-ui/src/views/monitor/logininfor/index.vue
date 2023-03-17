@@ -92,7 +92,7 @@
           size="mini"
           @click="handleExport"
           v-hasPermi="['monitor:logininfor:export']"
-        >导出</el-button>
+        >Excel</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
@@ -233,7 +233,7 @@ export default {
         this.$modal.msgSuccess("用户" + username + "解锁成功");
       }).catch(() => {});
     },
-    /** 导出按钮操作 */
+    /** Excel按钮操作 */
     handleExport() {
       this.download('monitor/logininfor/export', {
         ...this.queryParams

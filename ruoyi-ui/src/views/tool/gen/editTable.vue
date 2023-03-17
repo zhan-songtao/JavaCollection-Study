@@ -152,7 +152,7 @@ export default {
       columns: [],
       // 字典信息
       dictOptions: [],
-      // 菜单信息
+      // 物资信息
       menus: [],
       // 表详细信息
       info: {}
@@ -171,7 +171,7 @@ export default {
       getDictOptionselect().then(response => {
         this.dictOptions = response.data;
       });
-      /** 查询菜单下拉列表 */
+      /** 查询物资下拉列表 */
       getMenuTreeselect().then(response => {
         this.menus = this.handleTree(response.data, "menuId");
       });

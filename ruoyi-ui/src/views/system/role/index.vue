@@ -92,7 +92,7 @@
           size="mini"
           @click="handleExport"
           v-hasPermi="['system:role:export']"
-        >导出</el-button>
+        >Excel</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
@@ -182,7 +182,7 @@
             >{{dict.label}}</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="菜单权限">
+        <el-form-item label="物资权限">
           <el-checkbox v-model="menuExpand" @change="handleCheckedTreeExpand($event, 'menu')">展开/折叠</el-checkbox>
           <el-checkbox v-model="menuNodeAll" @change="handleCheckedTreeNodeAll($event, 'menu')">全选/全不选</el-checkbox>
           <el-checkbox v-model="form.menuCheckStrictly" @change="handleCheckedTreeConnect($event, 'menu')">父子联动</el-checkbox>
@@ -298,20 +298,20 @@ export default {
         },
         {
           value: "3",
-          label: "本部门数据权限"
+          label: "本小区数据权限"
         },
         {
           value: "4",
-          label: "本部门及以下数据权限"
+          label: "本小区及以下数据权限"
         },
         {
           value: "5",
           label: "仅本人数据权限"
         }
       ],
-      // 菜单列表
+      // 物资列表
       menuOptions: [],
-      // 部门列表
+      // 小区列表
       deptOptions: [],
       // 查询参数
       queryParams: {
@@ -355,38 +355,38 @@ export default {
         }
       );
     },
-    /** 查询菜单树结构 */
+    /** 查询物资树结构 */
     getMenuTreeselect() {
       menuTreeselect().then(response => {
         this.menuOptions = response.data;
       });
     },
-    // 所有菜单节点数据
+    // 所有物资节点数据
     getMenuAllCheckedKeys() {
-      // 目前被选中的菜单节点
+      // 目前被选中的物资节点
       let checkedKeys = this.$refs.menu.getCheckedKeys();
-      // 半选中的菜单节点
+      // 半选中的物资节点
       let halfCheckedKeys = this.$refs.menu.getHalfCheckedKeys();
       checkedKeys.unshift.apply(checkedKeys, halfCheckedKeys);
       return checkedKeys;
     },
-    // 所有部门节点数据
+    // 所有小区节点数据
     getDeptAllCheckedKeys() {
-      // 目前被选中的部门节点
+      // 目前被选中的小区节点
       let checkedKeys = this.$refs.dept.getCheckedKeys();
-      // 半选中的部门节点
+      // 半选中的小区节点
       let halfCheckedKeys = this.$refs.dept.getHalfCheckedKeys();
       checkedKeys.unshift.apply(checkedKeys, halfCheckedKeys);
       return checkedKeys;
     },
-    /** 根据角色ID查询菜单树结构 */
+    /** 根据角色ID查询物资树结构 */
     getRoleMenuTreeselect(roleId) {
       return roleMenuTreeselect(roleId).then(response => {
         this.menuOptions = response.menus;
         return response;
       });
     },
-    /** 根据角色ID查询部门树结构 */
+    /** 根据角色ID查询小区树结构 */
     getDeptTree(roleId) {
       return deptTreeSelect(roleId).then(response => {
         this.deptOptions = response.depts;
@@ -594,7 +594,7 @@ export default {
         this.$modal.msgSuccess("删除成功");
       }).catch(() => {});
     },
-    /** 导出按钮操作 */
+    /** Excel按钮操作 */
     handleExport() {
       this.download('system/role/export', {
         ...this.queryParams

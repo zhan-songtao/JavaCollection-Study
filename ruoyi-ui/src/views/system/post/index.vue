@@ -1,24 +1,24 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="岗位编码" prop="postCode">
+      <el-form-item label="物资编码" prop="postCode">
         <el-input
           v-model="queryParams.postCode"
-          placeholder="请输入岗位编码"
+          placeholder="请输入物资编码"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="岗位名称" prop="postName">
+      <el-form-item label="物资名称" prop="postName">
         <el-input
           v-model="queryParams.postName"
-          placeholder="请输入岗位名称"
+          placeholder="请输入物资名称"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
       <el-form-item label="状态" prop="status">
-        <el-select v-model="queryParams.status" placeholder="岗位状态" clearable>
+        <el-select v-model="queryParams.status" placeholder="物资状态" clearable>
           <el-option
             v-for="dict in dict.type.sys_normal_disable"
             :key="dict.value"
@@ -74,17 +74,17 @@
           size="mini"
           @click="handleExport"
           v-hasPermi="['system:post:export']"
-        >导出</el-button>
+        >Excel</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
     <el-table v-loading="loading" :data="postList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="岗位编号" align="center" prop="postId" />
-      <el-table-column label="岗位编码" align="center" prop="postCode" />
-      <el-table-column label="岗位名称" align="center" prop="postName" />
-      <el-table-column label="岗位排序" align="center" prop="postSort" />
+      <el-table-column label="物资编号" align="center" prop="postId" />
+      <el-table-column label="物资编码" align="center" prop="postCode" />
+      <el-table-column label="物资名称" align="center" prop="postName" />
+      <el-table-column label="物资排序" align="center" prop="postSort" />
       <el-table-column label="状态" align="center" prop="status">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.sys_normal_disable" :value="scope.row.status"/>
@@ -123,19 +123,19 @@
       @pagination="getList"
     />
 
-    <!-- 添加或修改岗位对话框 -->
+    <!-- 添加或修改物资对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="岗位名称" prop="postName">
-          <el-input v-model="form.postName" placeholder="请输入岗位名称" />
+        <el-form-item label="物资名称" prop="postName">
+          <el-input v-model="form.postName" placeholder="请输入物资名称" />
         </el-form-item>
-        <el-form-item label="岗位编码" prop="postCode">
+        <el-form-item label="物资编码" prop="postCode">
           <el-input v-model="form.postCode" placeholder="请输入编码名称" />
         </el-form-item>
-        <el-form-item label="岗位顺序" prop="postSort">
+        <el-form-item label="物资顺序" prop="postSort">
           <el-input-number v-model="form.postSort" controls-position="right" :min="0" />
         </el-form-item>
-        <el-form-item label="岗位状态" prop="status">
+        <el-form-item label="物资状态" prop="status">
           <el-radio-group v-model="form.status">
             <el-radio
               v-for="dict in dict.type.sys_normal_disable"
@@ -176,7 +176,7 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 岗位表格数据
+      // 物资表格数据
       postList: [],
       // 弹出层标题
       title: "",
@@ -195,13 +195,13 @@ export default {
       // 表单校验
       rules: {
         postName: [
-          { required: true, message: "岗位名称不能为空", trigger: "blur" }
+          { required: true, message: "物资名称不能为空", trigger: "blur" }
         ],
         postCode: [
-          { required: true, message: "岗位编码不能为空", trigger: "blur" }
+          { required: true, message: "物资编码不能为空", trigger: "blur" }
         ],
         postSort: [
-          { required: true, message: "岗位顺序不能为空", trigger: "blur" }
+          { required: true, message: "物资顺序不能为空", trigger: "blur" }
         ]
       }
     };
@@ -210,7 +210,7 @@ export default {
     this.getList();
   },
   methods: {
-    /** 查询岗位列表 */
+    /** 查询物资列表 */
     getList() {
       this.loading = true;
       listPost(this.queryParams).then(response => {
@@ -256,7 +256,7 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加岗位";
+      this.title = "添加物资";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
@@ -265,7 +265,7 @@ export default {
       getPost(postId).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改岗位";
+        this.title = "修改物资";
       });
     },
     /** 提交按钮 */
@@ -291,14 +291,14 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const postIds = row.postId || this.ids;
-      this.$modal.confirm('是否确认删除岗位编号为"' + postIds + '"的数据项？').then(function() {
+      this.$modal.confirm('是否确认删除物资编号为"' + postIds + '"的数据项？').then(function() {
         return delPost(postIds);
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("删除成功");
       }).catch(() => {});
     },
-    /** 导出按钮操作 */
+    /** Excel按钮操作 */
     handleExport() {
       this.download('system/post/export', {
         ...this.queryParams

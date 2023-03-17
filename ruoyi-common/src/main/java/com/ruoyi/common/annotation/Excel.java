@@ -10,7 +10,7 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import com.ruoyi.common.utils.poi.ExcelHandlerAdapter;
 
 /**
- * 自定义导出Excel数据注解
+ * 自定义ExcelExcel数据注解
  * 
  * @author ruoyi
  */
@@ -19,12 +19,12 @@ import com.ruoyi.common.utils.poi.ExcelHandlerAdapter;
 public @interface Excel
 {
     /**
-     * 导出时在excel中排序
+     * Excel时在excel中排序
      */
     public int sort() default Integer.MAX_VALUE;
 
     /**
-     * 导出到Excel中的名字.
+     * Excel到Excel中的名字.
      */
     public String name() default "";
 
@@ -59,12 +59,12 @@ public @interface Excel
     public int roundingMode() default BigDecimal.ROUND_HALF_EVEN;
 
     /**
-     * 导出时在excel中每个列的高度 单位为字符
+     * Excel时在excel中每个列的高度 单位为字符
      */
     public double height() default 14;
 
     /**
-     * 导出时在excel中每个列的宽 单位为字符
+     * Excel时在excel中每个列的宽 单位为字符
      */
     public double width() default 16;
 
@@ -94,7 +94,7 @@ public @interface Excel
     public boolean needMerge() default false;
 
     /**
-     * 是否导出数据,应对需求:有时我们需要导出一份模板,这是标题需要但内容需要用户手工填写.
+     * 是否Excel数据,应对需求:有时我们需要Excel一份模板,这是标题需要但内容需要用户手工填写.
      */
     public boolean isExport() default true;
 
@@ -109,32 +109,32 @@ public @interface Excel
     public boolean isStatistics() default false;
 
     /**
-     * 导出类型（0数字 1字符串 2图片）
+     * Excel类型（0数字 1字符串 2图片）
      */
     public ColumnType cellType() default ColumnType.STRING;
 
     /**
-     * 导出列头背景色
+     * Excel列头背景色
      */
     public IndexedColors headerBackgroundColor() default IndexedColors.GREY_50_PERCENT;
 
     /**
-     * 导出列头字体颜色
+     * Excel列头字体颜色
      */
     public IndexedColors headerColor() default IndexedColors.WHITE;
 
     /**
-     * 导出单元格背景色
+     * Excel单元格背景色
      */
     public IndexedColors backgroundColor() default IndexedColors.WHITE;
 
     /**
-     * 导出单元格字体颜色
+     * Excel单元格字体颜色
      */
     public IndexedColors color() default IndexedColors.BLACK;
 
     /**
-     * 导出字段对齐方式
+     * Excel字段对齐方式
      */
     public HorizontalAlignment align() default HorizontalAlignment.CENTER;
 
@@ -149,7 +149,7 @@ public @interface Excel
     public String[] args() default {};
 
     /**
-     * 字段类型（0：导出导入；1：仅导出；2：仅导入）
+     * 字段类型（0：Excel导入；1：仅Excel；2：仅导入）
      */
     Type type() default Type.ALL;
 

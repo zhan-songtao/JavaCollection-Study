@@ -52,7 +52,7 @@ public class SysJobController extends BaseController
     }
 
     /**
-     * 导出定时任务列表
+     * Excel定时任务列表
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:export')")
     @Log(title = "定时任务", businessType = BusinessType.EXPORT)

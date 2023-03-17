@@ -248,7 +248,7 @@ public class SysRoleServiceImpl implements ISysRoleService
     {
         // 修改角色信息
         roleMapper.updateRole(role);
-        // 删除角色与菜单关联
+        // 删除角色与物资关联
         roleMenuMapper.deleteRoleMenuByRoleId(role.getRoleId());
         return insertRoleMenu(role);
     }
@@ -277,14 +277,14 @@ public class SysRoleServiceImpl implements ISysRoleService
     {
         // 修改角色信息
         roleMapper.updateRole(role);
-        // 删除角色与部门关联
+        // 删除角色与小区关联
         roleDeptMapper.deleteRoleDeptByRoleId(role.getRoleId());
-        // 新增角色和部门信息（数据权限）
+        // 新增角色和小区信息（数据权限）
         return insertRoleDept(role);
     }
 
     /**
-     * 新增角色菜单信息
+     * 新增角色物资信息
      * 
      * @param role 角色对象
      */
@@ -308,14 +308,14 @@ public class SysRoleServiceImpl implements ISysRoleService
     }
 
     /**
-     * 新增角色部门信息(数据权限)
+     * 新增角色小区信息(数据权限)
      *
      * @param role 角色对象
      */
     public int insertRoleDept(SysRole role)
     {
         int rows = 1;
-        // 新增角色与部门（数据权限）管理
+        // 新增角色与小区（数据权限）管理
         List<SysRoleDept> list = new ArrayList<SysRoleDept>();
         for (Long deptId : role.getDeptIds())
         {
@@ -341,9 +341,9 @@ public class SysRoleServiceImpl implements ISysRoleService
     @Transactional
     public int deleteRoleById(Long roleId)
     {
-        // 删除角色与菜单关联
+        // 删除角色与物资关联
         roleMenuMapper.deleteRoleMenuByRoleId(roleId);
-        // 删除角色与部门关联
+        // 删除角色与小区关联
         roleDeptMapper.deleteRoleDeptByRoleId(roleId);
         return roleMapper.deleteRoleById(roleId);
     }
@@ -368,9 +368,9 @@ public class SysRoleServiceImpl implements ISysRoleService
                 throw new ServiceException(String.format("%1$s已分配,不能删除", role.getRoleName()));
             }
         }
-        // 删除角色与菜单关联
+        // 删除角色与物资关联
         roleMenuMapper.deleteRoleMenu(roleIds);
-        // 删除角色与部门关联
+        // 删除角色与小区关联
         roleDeptMapper.deleteRoleDept(roleIds);
         return roleMapper.deleteRoleByIds(roleIds);
     }

@@ -58,6 +58,7 @@ public class RedisCache
      */
     public boolean expire(final String key, final long timeout)
     {
+
         return expire(key, timeout, TimeUnit.SECONDS);
     }
 
@@ -82,6 +83,7 @@ public class RedisCache
      */
     public long getExpire(final String key)
     {
+
         return redisTemplate.getExpire(key);
     }
 
@@ -93,7 +95,9 @@ public class RedisCache
      */
     public Boolean hasKey(String key)
     {
+
         return redisTemplate.hasKey(key);
+
     }
 
     /**
@@ -115,6 +119,7 @@ public class RedisCache
      */
     public boolean deleteObject(final String key)
     {
+
         return redisTemplate.delete(key);
     }
 
@@ -126,6 +131,7 @@ public class RedisCache
      */
     public boolean deleteObject(final Collection collection)
     {
+
         return redisTemplate.delete(collection) > 0;
     }
 

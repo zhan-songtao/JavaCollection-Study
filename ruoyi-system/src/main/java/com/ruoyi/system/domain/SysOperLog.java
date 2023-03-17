@@ -24,7 +24,7 @@ public class SysOperLog extends BaseEntity
     private String title;
 
     /** 业务类型（0其它 1新增 2修改 3删除） */
-    @Excel(name = "业务类型", readConverterExp = "0=其它,1=新增,2=修改,3=删除,4=授权,5=导出,6=导入,7=强退,8=生成代码,9=清空数据")
+    @Excel(name = "业务类型", readConverterExp = "0=其它,1=新增,2=修改,3=删除,4=授权,5=Excel,6=导入,7=强退,8=生成代码,9=清空数据")
     private Integer businessType;
 
     /** 业务类型数组 */
@@ -46,8 +46,8 @@ public class SysOperLog extends BaseEntity
     @Excel(name = "操作人员")
     private String operName;
 
-    /** 部门名称 */
-    @Excel(name = "部门名称")
+    /** 小区名称 */
+    @Excel(name = "小区名称")
     private String deptName;
 
     /** 请求url */
@@ -70,8 +70,8 @@ public class SysOperLog extends BaseEntity
     @Excel(name = "返回参数")
     private String jsonResult;
 
-    /** 操作状态（0正常 1异常） */
-    @Excel(name = "状态", readConverterExp = "0=正常,1=异常")
+    /** 操作状态（0已完成 1异常） */
+    @Excel(name = "状态", readConverterExp = "0=已完成,1=异常")
     private Integer status;
 
     /** 错误消息 */

@@ -79,7 +79,7 @@
     <div class="center-board">
       <div class="action-bar">
         <el-button icon="el-icon-download" type="text" @click="download">
-          导出vue文件
+          Excelvue文件
         </el-button>
         <el-button class="copy-btn-main" icon="el-icon-document-copy" type="text" @click="copy">
           复制代码
@@ -147,7 +147,7 @@ import { makeUpHtml, vueTemplate, vueScript, cssStyle } from '@/utils/generator/
 import { makeUpJs } from '@/utils/generator/js'
 import { makeUpCss } from '@/utils/generator/css'
 import drawingDefault from '@/utils/generator/drawingDefault'
-import logo from '@/assets/logo/logo.png'
+import logo from '@/assets/logo/yiqing.png'
 import CodeTypeDialog from './CodeTypeDialog'
 import DraggableItem from './DraggableItem'
 

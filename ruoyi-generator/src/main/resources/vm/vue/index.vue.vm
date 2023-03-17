@@ -108,7 +108,7 @@
           size="mini"
           @click="handleExport"
           v-hasPermi="['${moduleName}:${businessName}:export']"
-        >导出</el-button>
+        >Excel</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
@@ -591,7 +591,7 @@ export default {
       this.checked${subClassName} = selection.map(item => item.index)
     },
 #end
-    /** 导出按钮操作 */
+    /** Excel按钮操作 */
     handleExport() {
       this.download('${moduleName}/${businessName}/export', {
         ...this.queryParams

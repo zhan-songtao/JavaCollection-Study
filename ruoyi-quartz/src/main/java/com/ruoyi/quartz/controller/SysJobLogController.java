@@ -44,7 +44,7 @@ public class SysJobLogController extends BaseController
     }
 
     /**
-     * 导出定时任务调度日志列表
+     * Excel定时任务调度日志列表
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:export')")
     @Log(title = "任务调度日志", businessType = BusinessType.EXPORT)

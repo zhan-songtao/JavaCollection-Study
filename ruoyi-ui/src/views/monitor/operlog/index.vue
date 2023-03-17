@@ -96,7 +96,7 @@
           size="mini"
           @click="handleExport"
           v-hasPermi="['monitor:operlog:export']"
-        >导出</el-button>
+        >Excel</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
@@ -170,7 +170,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item label="操作状态：">
-              <div v-if="form.status === 0">正常</div>
+              <div v-if="form.status === 0">已完成</div>
               <div v-else-if="form.status === 1">失败</div>
             </el-form-item>
           </el-col>
@@ -293,7 +293,7 @@ export default {
         this.$modal.msgSuccess("清空成功");
       }).catch(() => {});
     },
-    /** 导出按钮操作 */
+    /** Excel按钮操作 */
     handleExport() {
       this.download('monitor/operlog/export', {
         ...this.queryParams

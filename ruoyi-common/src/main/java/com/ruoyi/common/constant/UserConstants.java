@@ -12,7 +12,7 @@ public class UserConstants
      */
     public static final String SYS_USER = "SYS_USER";
 
-    /** 正常状态 */
+    /** 已完成状态 */
     public static final String NORMAL = "0";
 
     /** 异常状态 */
@@ -24,31 +24,31 @@ public class UserConstants
     /** 角色封禁状态 */
     public static final String ROLE_DISABLE = "1";
 
-    /** 部门正常状态 */
+    /** 小区已完成状态 */
     public static final String DEPT_NORMAL = "0";
 
-    /** 部门停用状态 */
+    /** 小区停用状态 */
     public static final String DEPT_DISABLE = "1";
 
-    /** 字典正常状态 */
+    /** 字典已完成状态 */
     public static final String DICT_NORMAL = "0";
 
     /** 是否为系统默认（是） */
     public static final String YES = "Y";
 
-    /** 是否菜单外链（是） */
+    /** 是否物资外链（是） */
     public static final String YES_FRAME = "0";
 
-    /** 是否菜单外链（否） */
+    /** 是否物资外链（否） */
     public static final String NO_FRAME = "1";
 
-    /** 菜单类型（目录） */
+    /** 物资类型（目录） */
     public static final String TYPE_DIR = "M";
 
-    /** 菜单类型（菜单） */
+    /** 物资类型（物资） */
     public static final String TYPE_MENU = "C";
 
-    /** 菜单类型（按钮） */
+    /** 物资类型（按钮） */
     public static final String TYPE_BUTTON = "F";
 
     /** Layout组件标识 */

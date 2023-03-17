@@ -169,7 +169,7 @@ export default {
 								}
 							}
 						} else if (this.dayRule == 'workDay') {
-							// 校验并调整如果是2月30号这种日期传进来时需调整至正常月底
+							// 校验并调整如果是2月30号这种日期传进来时需调整至已完成月底
 							if (this.checkDate(YY + '-' + MM + '-' + thisDD + ' 00:00:00') !== true) {
 								while (DD > 0 && this.checkDate(YY + '-' + MM + '-' + thisDD + ' 00:00:00') !== true) {
 									DD--;
@@ -223,7 +223,7 @@ export default {
 							}
 						} else if (this.dayRule == 'lastWeek') {
 							// 如果指定了每月最后一个星期几
-							// 校验并调整如果是2月30号这种日期传进来时需调整至正常月底
+							// 校验并调整如果是2月30号这种日期传进来时需调整至已完成月底
 							if (this.checkDate(YY + '-' + MM + '-' + thisDD + ' 00:00:00') !== true) {
 								while (DD > 0 && this.checkDate(YY + '-' + MM + '-' + thisDD + ' 00:00:00') !== true) {
 									DD--;

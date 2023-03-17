@@ -77,7 +77,7 @@ public class StrFormatter
                 }
                 else
                 {
-                    // 正常占位符
+                    // 已完成占位符
                     sbuf.append(strPattern, handledPosition, delimIndex);
                     sbuf.append(Convert.utf8Str(argArray[argIndex]));
                     handledPosition = delimIndex + 2;

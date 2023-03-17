@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.his.mapper.HisEstateMapper">
+
+    <resultMap type="HisEstate" id="HisEstateResult">
+        <id     property="estateId"        column="estate_id"       />
+        <result property="estateCode"      column="estate_code"     />
+        <result property="estateName"      column="estate_name"     />
+        <result property="estateSort"      column="estate_sort"     />
+        <result property="status"        column="status"        />
+        <result property="createBy"      column="create_by"     />
+        <result property="createTime"    column="create_time"   />
+        <result property="updateBy"      column="update_by"     />
+        <result property="updateTime"    column="update_time"   />
+        <result property="remark"        column="remark"        />
+    </resultMap>
+
+    <sql id="selectEstateVo">
+        select estate_id, estate_code, estate_name, estate_sort, status, create_by, create_time, remark
+        from his_estate
+    </sql>
+
+
+    <select id="selectEstateList" parameterType="HisEstate" resultMap="HisEstateResult">
+        <include refid="selectEstateVo"/>
+        <where>
+            <if test="estateCode != null and estateCode != ''">
+                AND estate_code like concat('%', #{estateCode}, '%')
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+            <if test="estateName != null and estateName != ''">
+                AND estate_name like concat('%', #{estateName}, '%')
+            </if>
+        </where>
+    </select>
+
+
+    <select id="selectEstateAll" resultMap="HisEstateResult">
+        <include refid="selectEstateVo"/>
+    </select>
+
+    <select id="selectEstateById" parameterType="Long" resultMap="HisEstateResult">
+        <include refid="selectEstateVo"/>
+        where estate_id = #{estateId}
+    </select>
+
+<!--    <select id="selectEstateListByUserId" parameterType="Long" resultType="Long">-->
+<!--        select p.estate_id-->
+<!--        from his_estate p-->
+<!--                 left join sys_user_estate up on up.estate_id = p.estate_id-->
+<!--                 left join sys_user u on u.user_id = up.user_id-->
+<!--        where u.user_id = #{userId}-->
+<!--    </select>-->
+
+<!--    <select id="selectPostsByUserName" parameterType="String" resultMap="SysPostResult">-->
+<!--        select p.post_id, p.post_name, p.post_code-->
+<!--        from sys_post p-->
+<!--                 left join sys_user_post up on up.post_id = p.post_id-->
+<!--                 left join sys_user u on u.user_id = up.user_id-->
+<!--        where u.user_name = #{userName}-->
+<!--    </select>-->
+
+    <!--校验名称的唯一性-->
+    <select id="checkEstateNameUnique" parameterType="String" resultMap="HisEstateResult">
+        <include refid="selectEstateVo"/>
+        where estate_name=#{estateName} limit 1
+    </select>
+<!--校验编码的唯一性-->
+    <select id="checkEstateCodeUnique" parameterType="String" resultMap="HisEstateResult">
+        <include refid="selectEstateVo"/>
+        where estate_code=#{estateCode} limit 1
+    </select>
+
+
+    <insert id="insertEstate" parameterType="HisEstate" useGeneratedKeys="true" keyProperty="estateId">
+        insert into his_estate(
+        <if test="estateId != null and estateId != 0">estate_id,</if>
+        <if test="estateCode != null and estateCode != ''">estate_code,</if>
+        <if test="estateName != null and estateName != ''">estate_name,</if>
+        <if test="estateSort != null">estate_sort,</if>
+        <if test="status != null and status != ''">status,</if>
+        <if test="remark != null and remark != ''">remark,</if>
+        <if test="createBy != null and createBy != ''">create_by,</if>
+        create_time
+        )values(
+        <if test="estateId != null and estateId != 0">#{estateId},</if>
+        <if test="estateCode != null and estateCode != ''">#{estateCode},</if>
+        <if test="estateName != null and estateName != ''">#{estateName},</if>
+        <if test="estateSort != null">#{estateSort},</if>
+        <if test="status != null and status != ''">#{status},</if>
+        <if test="remark != null and remark != ''">#{remark},</if>
+        <if test="createBy != null and createBy != ''">#{createBy},</if>
+        sysdate()
+        )
+    </insert>
+
+
+    <delete id="deleteEstateById" parameterType="Long">
+
+        delete
+        from his_estate
+         where estate_id=#{estateId}
+
+    </delete>
+
+    <delete id="deleteEstateByIds" parameterType="Long">
+
+            delete
+           from his_estate
+            where estate_id in
+        <foreach collection="array" item="estateId" open="(" separator="," close=")">
+            #{estateId}
+        </foreach>
+
+    </delete>
+
+
+    <update id="updateEstate" parameterType="HisEstate">
+        update his_estate
+        <set>
+            <if test="estateCode != null and estateCode != ''">estate_code = #{estateCode},</if>
+            <if test="estateName != null and estateName != ''">estate_name = #{estateName},</if>
+            <if test="estateSort != null">estate_sort = #{estateSort},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
+            update_time = sysdate()
+        </set>
+        where estate_id = #{estateId}
+    </update>
+</mapper> 

@@ -25,8 +25,8 @@ public class SysUser extends BaseEntity
     @Excel(name = "用户序号", cellType = ColumnType.NUMERIC, prompt = "用户编号")
     private Long userId;
 
-    /** 部门ID */
-    @Excel(name = "部门编号", type = Type.IMPORT)
+    /** 小区ID */
+    @Excel(name = "小区编号", type = Type.IMPORT)
     private Long deptId;
 
     /** 用户账号 */
@@ -55,8 +55,8 @@ public class SysUser extends BaseEntity
     /** 密码 */
     private String password;
 
-    /** 帐号状态（0正常 1停用） */
-    @Excel(name = "帐号状态", readConverterExp = "0=正常,1=停用")
+    /** 帐号状态（0已完成 1停用） */
+    @Excel(name = "帐号状态", readConverterExp = "0=存货,1=停用")
     private String status;
 
     /** 删除标志（0代表存在 2代表删除） */
@@ -70,10 +70,10 @@ public class SysUser extends BaseEntity
     @Excel(name = "最后登录时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Type.EXPORT)
     private Date loginDate;
 
-    /** 部门对象 */
+    /** 小区对象 */
     @Excels({
-        @Excel(name = "部门名称", targetAttr = "deptName", type = Type.EXPORT),
-        @Excel(name = "部门负责人", targetAttr = "leader", type = Type.EXPORT)
+        @Excel(name = "小区名称", targetAttr = "deptName", type = Type.EXPORT),
+        @Excel(name = "小区负责人", targetAttr = "leader", type = Type.EXPORT)
     })
     private SysDept dept;
 
@@ -83,7 +83,7 @@ public class SysUser extends BaseEntity
     /** 角色组 */
     private Long[] roleIds;
 
-    /** 岗位组 */
+    /** 物资组 */
     private Long[] postIds;
 
     /** 角色ID */

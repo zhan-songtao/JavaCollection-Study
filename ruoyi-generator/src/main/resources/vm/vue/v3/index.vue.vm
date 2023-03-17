@@ -103,7 +103,7 @@
           icon="Download"
           @click="handleExport"
           v-hasPermi="['${moduleName}:${businessName}:export']"
-        >导出</el-button>
+        >Excel</el-button>
       </el-col>
       <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
@@ -579,7 +579,7 @@ function handle${subClassName}SelectionChange(selection) {
 }
 
 #end
-/** 导出按钮操作 */
+/** Excel按钮操作 */
 function handleExport() {
   proxy.download('${moduleName}/${businessName}/export', {
     ...queryParams.value

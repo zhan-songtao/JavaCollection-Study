@@ -109,7 +109,7 @@ public class ExcelUtil<T>
     private String sheetName;
 
     /**
-     * 导出类型（EXPORT:导出数据；IMPORT：导入模板）
+     * Excel类型（EXPORT:Excel数据；IMPORT：导入模板）
      */
     private Type type;
 
@@ -129,7 +129,7 @@ public class ExcelUtil<T>
     private Map<String, CellStyle> styles;
 
     /**
-     * 导入导出数据列表
+     * 导入Excel数据列表
      */
     private List<T> list;
 
@@ -483,7 +483,7 @@ public class ExcelUtil<T>
     /**
      * 对list数据源将其里面的数据导入到excel表单
      * 
-     * @param list 导出数据集合
+     * @param list Excel数据集合
      * @param sheetName 工作表的名称
      * @return 结果
      */
@@ -495,7 +495,7 @@ public class ExcelUtil<T>
     /**
      * 对list数据源将其里面的数据导入到excel表单
      * 
-     * @param list 导出数据集合
+     * @param list Excel数据集合
      * @param sheetName 工作表的名称
      * @param title 标题
      * @return 结果
@@ -510,7 +510,7 @@ public class ExcelUtil<T>
      * 对list数据源将其里面的数据导入到excel表单
      * 
      * @param response 返回数据
-     * @param list 导出数据集合
+     * @param list Excel数据集合
      * @param sheetName 工作表的名称
      * @return 结果
      */
@@ -523,7 +523,7 @@ public class ExcelUtil<T>
      * 对list数据源将其里面的数据导入到excel表单
      * 
      * @param response 返回数据
-     * @param list 导出数据集合
+     * @param list Excel数据集合
      * @param sheetName 工作表的名称
      * @param title 标题
      * @return 结果
@@ -600,7 +600,7 @@ public class ExcelUtil<T>
         }
         catch (Exception e)
         {
-            log.error("导出Excel异常{}", e.getMessage());
+            log.error("ExcelExcel异常{}", e.getMessage());
         }
         finally
         {
@@ -626,8 +626,8 @@ public class ExcelUtil<T>
         }
         catch (Exception e)
         {
-            log.error("导出Excel异常{}", e.getMessage());
-            throw new UtilException("导出Excel失败，请联系网站管理员！");
+            log.error("ExcelExcel异常{}", e.getMessage());
+            throw new UtilException("ExcelExcel失败，请联系网站管理员！");
         }
         finally
         {
@@ -692,7 +692,7 @@ public class ExcelUtil<T>
         {
             rowNo = isSubList() ? (i > 1 ? rowNo + 1 : rowNo + i) : i + 1 + rownum - startNo;
             row = sheet.createRow(rowNo);
-            // 得到导出对象.
+            // 得到Excel对象.
             T vo = (T) list.get(i);
             Collection<?> subList = null;
             if (isSubList())
@@ -1006,7 +1006,7 @@ public class ExcelUtil<T>
         {
             // 设置行高
             row.setHeight(maxHeight);
-            // 根据Excel中设置情况决定是否导出,有些情况需要保持为空,希望用户填写这一列.
+            // 根据Excel中设置情况决定是否Excel,有些情况需要保持为空,希望用户填写这一列.
             if (attr.isExport())
             {
                 // 创建cell
@@ -1054,7 +1054,7 @@ public class ExcelUtil<T>
         }
         catch (Exception e)
         {
-            log.error("导出Excel失败{}", e);
+            log.error("ExcelExcel失败{}", e);
         }
         return cell;
     }
@@ -1110,7 +1110,7 @@ public class ExcelUtil<T>
     public void setXSSFValidationWithHidden(Sheet sheet, String[] textlist, String promptContent, int firstRow, int endRow, int firstCol, int endCol)
     {
         String hideSheetName = "combo_" + firstCol + "_" + endCol;
-        Sheet hideSheet = wb.createSheet(hideSheetName); // 用于存储 下拉菜单数据
+        Sheet hideSheet = wb.createSheet(hideSheetName); // 用于存储 下拉物资数据
         for (int i = 0; i < textlist.length; i++)
         {
             hideSheet.createRow(i).createCell(0).setCellValue(textlist[i]);
@@ -1149,7 +1149,7 @@ public class ExcelUtil<T>
     }
 
     /**
-     * 解析导出值 0=男,1=女,2=未知
+     * 解析Excel值 0=男,1=女,2=未知
      * 
      * @param propertyValue 参数值
      * @param converterExp 翻译注解

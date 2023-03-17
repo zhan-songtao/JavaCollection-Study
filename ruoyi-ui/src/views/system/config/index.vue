@@ -87,7 +87,7 @@
           size="mini"
           @click="handleExport"
           v-hasPermi="['system:config:export']"
-        >导出</el-button>
+        >Excel</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -326,7 +326,7 @@ export default {
           this.$modal.msgSuccess("删除成功");
         }).catch(() => {});
     },
-    /** 导出按钮操作 */
+    /** Excel按钮操作 */
     handleExport() {
       this.download('system/config/export', {
         ...this.queryParams

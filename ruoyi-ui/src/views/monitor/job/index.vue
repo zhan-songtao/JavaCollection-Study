@@ -76,7 +76,7 @@
           size="mini"
           @click="handleExport"
           v-hasPermi="['monitor:job:export']"
-        >导出</el-button>
+        >Excel</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -263,7 +263,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item label="任务状态：">
-              <div v-if="form.status == 0">正常</div>
+              <div v-if="form.status == 0">已完成</div>
               <div v-else-if="form.status == 1">失败</div>
             </el-form-item>
           </el-col>
@@ -502,7 +502,7 @@ export default {
         this.$modal.msgSuccess("删除成功");
       }).catch(() => {});
     },
-    /** 导出按钮操作 */
+    /** Excel按钮操作 */
     handleExport() {
       this.download('monitor/job/export', {
         ...this.queryParams

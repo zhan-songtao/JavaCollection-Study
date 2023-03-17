@@ -62,8 +62,8 @@
       <el-col :span="12">
         <el-form-item>
           <span slot="label">
-            上级菜单
-            <el-tooltip content="分配到指定菜单下，例如 系统管理" placement="top">
+            上级物资
+            <el-tooltip content="分配到指定物资下，例如 系统管理" placement="top">
               <i class="el-icon-question"></i>
             </el-tooltip>
           </span>
@@ -73,7 +73,7 @@
             :options="menus"
             :normalizer="normalizer"
             :show-count="true"
-            placeholder="请选择系统菜单"
+            placeholder="请选择系统物资"
           />
         </el-form-item>
       </el-col>
@@ -262,7 +262,7 @@ export default {
     }
   },
   methods: {
-    /** 转换菜单数据结构 */
+    /** 转换物资数据结构 */
     normalizer(node) {
       if (node.children && !node.children.length) {
         delete node.children;

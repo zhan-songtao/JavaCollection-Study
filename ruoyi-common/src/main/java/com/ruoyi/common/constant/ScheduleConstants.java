@@ -27,7 +27,7 @@ public class ScheduleConstants
     public enum Status
     {
         /**
-         * 正常
+         * 已完成
          */
         NORMAL("0"),
         /**

@@ -26,7 +26,7 @@ public class VelocityUtils
     /** mybatis空间路径 */
     private static final String MYBATIS_PATH = "main/resources/mapper";
 
-    /** 默认上级菜单，系统工具 */
+    /** 默认上级物资，系统工具 */
     private static final String DEFAULT_PARENT_MENU_ID = "3";
 
     /**
@@ -313,10 +313,10 @@ public class VelocityUtils
     }
 
     /**
-     * 获取上级菜单ID字段
+     * 获取上级物资ID字段
      *
      * @param paramsObj 生成其他选项
-     * @return 上级菜单ID字段
+     * @return 上级物资ID字段
      */
     public static String getParentMenuId(JSONObject paramsObj)
     {
